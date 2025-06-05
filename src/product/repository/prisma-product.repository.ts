@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { IProductRepository } from './product.repository';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { ProductListDto } from './dto/product-list.dto';
-import { ProductDetailDto } from './dto/product-detail.dto';
-import { PaginationResultDto } from '../common/pagination/pagination-result.dto';
-import { PaginationQueryDto } from '../common/pagination/pagination-query.dto';
+import { CreateProductDto } from '../dto/create-product.dto';
+import { UpdateProductDto } from '../dto/update-product.dto';
+import { ProductDetailDto } from '../dto/product-detail.dto';
+import { PaginationQueryDto } from '../../common/pagination/pagination-query.dto';
+import { ProductPaginatedResponseDto } from '../dto/product-paginated-response.dto';
 
 @Injectable()
 export class PrismaProductRepository implements IProductRepository {
@@ -18,7 +17,7 @@ export class PrismaProductRepository implements IProductRepository {
 
   async list(
     query: PaginationQueryDto = {},
-  ): Promise<PaginationResultDto<ProductListDto>> {
+  ): Promise<ProductPaginatedResponseDto> {
     const page = query.page ?? 1;
     const pageSize = query.pageSize ?? 10;
     const [nodes, count] = await this.prisma.$transaction([
@@ -33,7 +32,7 @@ export class PrismaProductRepository implements IProductRepository {
       }),
       this.prisma.product.count(),
     ]);
-    return new PaginationResultDto(nodes, count, page, pageSize);
+    return { count, nodes, page, pageSize };
   }
 
   findOne(id: number): Promise<ProductDetailDto | null> {

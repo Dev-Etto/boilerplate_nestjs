@@ -1,5 +1,56 @@
+# Arquivos e pastas de build
+build/
+dist/
+
+# Dependências
 node_modules
-# Keep environment variables out of version control
+
+# Variáveis de ambiente
 .env
 
+# Prisma gerado
 /generated/prisma
+
+# Arquivos temporários e de sistema
+*.js.map
+.vscode/
+coverage/
+
+# Arquivos de lock e cache
+*.log
+*.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testes
+/coverage
+/test-results
+
+# Outros arquivos desnecessários
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*.swo
+
+# Ignorar arquivos de build do NestJS
+*.tsbuildinfo
+
+# Ignorar arquivos de build do TypeScript
+*.tsbuildinfo
+
+# Ignorar arquivos de build do Prisma
+/prisma/generated/
+
+# Ignorar arquivos de build do Jest
+/jest*
+
+# Ignorar arquivos de build do Prettier
+/.prettier*
+
+# Ignorar arquivos de build do ESLint
+/.eslint*
+
+# Ignorar arquivos de build do SWC
+/.swc

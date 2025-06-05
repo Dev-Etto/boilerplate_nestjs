@@ -1,11 +1,10 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { IProductRepository } from './product.repository';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { ProductListDto } from './dto/product-list.dto';
-import { ProductDetailDto } from './dto/product-detail.dto';
-import { PaginationResultDto } from '../common/pagination/pagination-result.dto';
-import { PaginationQueryDto } from '../common/pagination/pagination-query.dto';
+import { IProductRepository } from '../repository/product.repository';
+import { CreateProductDto } from '../dto/create-product.dto';
+import { UpdateProductDto } from '../dto/update-product.dto';
+import { ProductDetailDto } from '../dto/product-detail.dto';
+import { PaginationQueryDto } from '../../common/pagination/pagination-query.dto';
+import { ProductPaginatedResponseDto } from '../dto/product-paginated-response.dto';
 
 @Injectable()
 export class ProductService {
@@ -18,9 +17,7 @@ export class ProductService {
     return this.repository.create(data);
   }
 
-  list(
-    query?: PaginationQueryDto,
-  ): Promise<PaginationResultDto<ProductListDto>> {
+  list(query?: PaginationQueryDto): Promise<ProductPaginatedResponseDto> {
     return this.repository.list(query);
   }
 

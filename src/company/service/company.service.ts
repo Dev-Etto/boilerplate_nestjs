@@ -1,11 +1,10 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { ICompanyRepository } from './company.repository';
-import { CreateCompanyDto } from './dto/create-company.dto';
-import { UpdateCompanyDto } from './dto/update-company.dto';
-import { CompanyListDto } from './dto/company-list.dto';
-import { CompanyDetailDto } from './dto/company-detail.dto';
-import { PaginationResultDto } from '../common/pagination/pagination-result.dto';
-import { PaginationQueryDto } from '../common/pagination/pagination-query.dto';
+import { ICompanyRepository } from '../repository/company.repository';
+import { CreateCompanyDto } from '../dto/create-company.dto';
+import { UpdateCompanyDto } from '../dto/update-company.dto';
+import { CompanyDetailDto } from '../dto/company-detail.dto';
+import { PaginationQueryDto } from '../../common/pagination/pagination-query.dto';
+import { CompanyPaginatedResponseDto } from '../dto/company-paginated-response.dto';
 
 @Injectable()
 export class CompanyService {
@@ -18,9 +17,7 @@ export class CompanyService {
     return this.repository.create(data);
   }
 
-  list(
-    query?: PaginationQueryDto,
-  ): Promise<PaginationResultDto<CompanyListDto>> {
+  list(query?: PaginationQueryDto): Promise<CompanyPaginatedResponseDto> {
     return this.repository.list(query);
   }
 

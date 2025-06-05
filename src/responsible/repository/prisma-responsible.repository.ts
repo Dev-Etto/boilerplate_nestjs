@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { IResponsibleRepository } from './responsible.repository';
-import { CreateResponsibleDto } from './dto/create-responsible.dto';
-import { UpdateResponsibleDto } from './dto/update-responsible.dto';
-import { ResponsibleListDto } from './dto/responsible-list.dto';
-import { ResponsibleDetailDto } from './dto/responsible-detail.dto';
-import { PaginationResultDto } from '../common/pagination/pagination-result.dto';
-import { PaginationQueryDto } from '../common/pagination/pagination-query.dto';
+import { CreateResponsibleDto } from '../dto/create-responsible.dto';
+import { UpdateResponsibleDto } from '../dto/update-responsible.dto';
+import { ResponsibleDetailDto } from '../dto/responsible-detail.dto';
+import { PaginationQueryDto } from '../../common/pagination/pagination-query.dto';
+import { ResponsiblePaginatedResponseDto } from '../dto/responsible-paginated-response.dto';
 
 @Injectable()
 export class PrismaResponsibleRepository implements IResponsibleRepository {
@@ -18,7 +17,7 @@ export class PrismaResponsibleRepository implements IResponsibleRepository {
 
   async list(
     query: PaginationQueryDto = {},
-  ): Promise<PaginationResultDto<ResponsibleListDto>> {
+  ): Promise<ResponsiblePaginatedResponseDto> {
     const page = query.page ?? 1;
     const pageSize = query.pageSize ?? 10;
     const [nodes, count] = await this.prisma.$transaction([
@@ -33,7 +32,13 @@ export class PrismaResponsibleRepository implements IResponsibleRepository {
       }),
       this.prisma.responsible.count(),
     ]);
-    return new PaginationResultDto(nodes, count, page, pageSize);
+
+    return {
+      count,
+      nodes,
+      page,
+      pageSize,
+    };
   }
 
   findOne(id: number): Promise<ResponsibleDetailDto | null> {
