@@ -7,6 +7,7 @@ Este projeto é um boilerplate para um CRUD completo usando NestJS, Prisma e val
 1. **Padronize a versão do Node com NVM:**
 
 ```sh
+nvm install
 nvm use
 ```
 
@@ -28,13 +29,23 @@ npm install
 npx prisma migrate dev
 ```
 
-5. **Rode a aplicação:**
+5. **Popule o banco com dados de exemplo:**
+
+```sh
+npm run prisma:seed
+```
+
+6. **Rode a aplicação:**
 
 ```sh
 npm run start:dev
 ```
 
-6. **Rode os testes:**
+7. **Acesse a documentação Swagger:**
+
+Acesse [http://localhost:3000/api](http://localhost:3000/api) para visualizar e testar a API documentada automaticamente pelo Swagger.
+
+8. **Rode os testes:**
 
 ```sh
 npm run test
@@ -48,16 +59,16 @@ npm run test
   - `responsible/` - Módulo de responsáveis (controller, service, DTOs, repositórios)
   - `common/` - Utilitários e DTOs compartilhados
 - `test/` - Testes e2e e helpers de setup
-- `prisma/` - Migrations e schema do banco
+- `prisma/` - Migrations, schema do banco e seeders
 
 ## Tecnologias principais
 - NestJS
 - Prisma ORM
 - class-validator / class-transformer
 - Jest (testes unitários e e2e)
-- Docker
-- MSQL
+- Docker (banco de dados)
 - NVM (gestão de versão do Node)
+- Swagger (documentação automática da API)
 
 ## Autor
 
