@@ -4,6 +4,6 @@ import { ResponsibleDetailDto } from 'src/responsible/dto/responsible-detail.dto
 export class CompanyDetailDto {
   id: number;
   name: string;
-  responsible?: ResponsibleDetailDto;
+  responsible?: ResponsibleDetailDto | null;
   products: ProductListDto[];
 }
