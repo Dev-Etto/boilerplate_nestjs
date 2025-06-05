@@ -43,7 +43,7 @@ npm run start:dev
 
 7. **Acesse a documentação Swagger:**
 
-Acesse [http://localhost:3000/api](http://localhost:3000/api) para visualizar e testar a API documentada automaticamente pelo Swagger.
+Acesse [http://localhost:3000/api-docs](http://localhost:3000/api-docs) para visualizar e testar a API documentada automaticamente pelo Swagger.
 
 8. **Rode os testes:**
 
