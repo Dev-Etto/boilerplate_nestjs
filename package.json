@@ -1,8 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "boilerplate_nestjs",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Desafio técnico CRUD de produtos e empresas",
+  "author": "Dev-Etto",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
