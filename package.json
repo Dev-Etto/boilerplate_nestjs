@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@nestjs/swagger": "^11.2.0",
+    "@prisma/client": "^6.9.0",
+    "mysql2": "^3.14.1",
+    "prisma": "^6.9.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
