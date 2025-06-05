@@ -7,7 +7,6 @@ Este projeto é um boilerplate para um CRUD completo usando NestJS, Prisma e val
 1. **Padronize a versão do Node com NVM:**
 
 ```sh
-nvm install
 nvm use
 ```
 
