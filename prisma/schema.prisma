@@ -6,10 +6,37 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Company {
+  id          Int          @id @default(autoincrement())
+  name        String
+  responsible Responsible?
+  products    Product[]
+  @@map("company")
+}
+
+model Responsible {
+  id         Int      @id @default(autoincrement())
+  name       String
+  phone      String
+  email      String   @unique
+  cpf        String   @unique
+  companyId  Int      @unique @map("company_id")
+  company    Company  @relation(fields: [companyId], references: [id])
+  @@map("responsible")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Float
+  companyId Int      @map("company_id")
+  company   Company  @relation(fields: [companyId], references: [id])
+  @@map("product")
 }
